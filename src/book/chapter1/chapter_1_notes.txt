@@ -1,0 +1,132 @@
+Notes:
+-Object is a runtime instance of class in memory
+-fields=variables
+-full declaration of method is method signature (public int numberVisitors(int month))
+-usually each class is defined in its own file.
+-only one class per file can be public
+-if you have a public class it needs a matching file name (public class Animal2 would not compile in Animal.java)
+
+COMPILING AND RUNNING
+	-Java program begins execution with its main method
+	-to compile java code: javac ClassName.java
+	-to run: java ClassName
+	- ClassName.class is bytecode (it contains instructions for JVM)
+	-all command line arguments for main(String[] args) are treated as String (even if you type java ClassName 1 asdasdas 1.02F)
+
+ACCESS MODIFIERS:
+	-private (same class)
+	-default (same package)
+	-protected (same package + subclasses)
+	-public (all)
+	
+PACKAGE DECLARATIONS AND IMPORTS
+	-wildcards * (import java.util.*) -> imports all classes in java.util package
+		-it doesn't import child packages, fields or methods
+	-import static > imports static members
+	-REDUNDANT IMPORTS:
+		-java.lang (automatically imported)
+		-importing a class in the same package
+	-NAMING CONFLICTS:	
+		-class names dont have to be unique in different packages
+		-java.util.Date
+		-java.sql.Data
+		import java.util.*
+		import java.sql.* //DOES NOT COMPILE because Date class conflict
+		-if you explicitly import a class name it takes precedence over any wildcard imports
+		import java.util.Date
+		import java.sql.* //WORKS
+	-CREATING A NEW PACKAGE:	
+		-if not created is default package (special unnamed package for throwaway code)	
+		- package always at the top of code
+		
+CREATING OBJECTS		
+	-object=instance of class
+	CONSTRUCTIORS:	
+		-name of constructor=name of class
+		-no return type
+		if no constructor is present compiler will insert default -do nothing- constructor 
+	INSTANCE INITIALIZER BLOCKS
+		{} - outside of methods
+	ORDER OF INITIALIZATION
+		-fields and instance initializer blocks run in order they appear in
+		- constructor runs after fields and instance initializers
+		-you can't refer to a variable before it has been initialized
+		
+OBJECT REFERENCES AND PRIMITIVES
+	Primitive types
+		-types:
+			-boolean
+			-byte
+			-short
+			-int
+			-long 123L
+			-float 123F
+			-double
+			-char		
+		-Can not be null
+		-You can have _ between numbers:
+			10_000_000.00 OK
+			_100.00 not OK
+			100.00_ not OK
+			100_.00 not OK
+	Reference types
+		-pointer
+		-can be NULL			
+			
+DECLARING AND INITIALIZING VARIABLES
+	String s1,s1;
+	String s3="yes, s4="no";
+	String s5,s6,s7="s7"; (only s7 is assigned)
+	String s8, String s9; DOES NOT COMPILE	
+	Identifiers:
+		-name must begin with letter or $ or _
+		-Must not begin with number, but subsequent characters can be numbers 
+		-Can not be Java reserved word
+		
+DEFAULT INITIALIZATION OF VARIABLES
+	Local variables:
+		-inside methods
+		-you NEED to set a value yourself before using it
+		-does not get assigned a value automatically
+	Instance and class variables
+		-Instance variables = fields
+		-Class variables = static field
+		Default values: 
+			-boolean = false	
+			-byte,short,int,long = 0	
+			-float,double = 0.0	
+			-char = '\u0000' (NUL)	
+			-All object references = null	
+			
+ORDER OF ELEMENTS IN A CLASS
+	-Package declaration
+	-Import statements
+	-Class declaration
+	-Field and method declarations		
+	
+DESTROYING OBJECTS
+	-Java garbage collector	
+		-deleting objects that are no longer reachable by your code
+		-System.gc() is NOT guaranteed to run	
+		-only the object gets garbage collected, the reference does not
+		-finalize()
+			-gets called if the garbage collector tries to collect the object
+			-might run 0 or 1 time
+			-if it runs once and doesn't collect, it will not run again
+
+BENEFITS OF JAVA			
+	-Object oriented	
+	-Encapsulation
+	-Platform independent
+	-Robust (prevents memory leaks unlike C++)
+	-Simple (simpler than C++)
+	-Secure (runs inside JVM - sandbox)
+		
+		
+		
+		
+		
+		
+		
+		
+	

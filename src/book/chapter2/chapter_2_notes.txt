@@ -1,0 +1,87 @@
+Notes:
+JAVA OPERATORS
+	TYPES OF OPERATORS
+	   	Unary
+	        Postfix
+	            i++, i--
+	        Prefix
+	            ++i, --i
+	        Other unary
+	            +, -, !, ~
+	    Binary          
+	    	Arithmetic operators  
+		        Multiplication/division/modulus        
+		            *, /, %
+		        Addition/subtraction
+		            +, -
+	        Shift operators
+	            <<, >>, >>>
+	        Relational operators
+	            <, >, <=, >=, instanceof
+	        Equality operators
+	            ==, !=
+	        Bitwise operators
+	            &, ^, |
+	        Short-circuit logical operators
+	            &&, ||                        
+	    Ternary
+	        boolean expression ? expression1 : expression2
+	    Assignment operators
+	        =, +=, -=, *=, /=, %=, &=, |=, ^=, <<=, >>=, >>>=	
+	        	
+	Multiplicative operators (*,/,%) have higher precedance than aditive operators (+,-)
+			int x= 2*5+4*4; (10+16)	
+			
+	NUMERIC PROMOTION
+		Rules:
+			-if 2 values have different types, java will automatically promote both to the larger data type
+			-if one value i integral and the other is floating both will be floating
+			-smaller data types (byte,short,char) are FIRST promoted to int ANYTIME they are used with arithmetic operator even if they are both the same type (unary operators are excluded from this rule)
+			-after all promotion has occurred the result will have the promoted data value as well	
+			
+	WORKING WITH UNARY OPERATORS
+		-operator - reverses a value of a number to its negative (x=-x)
+		-pre increment operator (++i)
+			-the value is incremented first and then returned
+		-post increment operator (i++)
+			-the original value is returned first and then incremented
+		int x=3;
+		int y=++x*5/x--+--x; (4*5/4+2)
+			
+	ASSIGMENT OPERATORS
+		-java will automatically convert from smaller to larger data types but not from larger to smaller
+		double x=5; OK (converts from int to double)
+		int y=5.00 DOES NOT COMPILE; (cannot convert from double to int)
+		-result of an assignment operator is a result in and of itself
+			System.out.println(x=3) //PRINTS 3
+			- x=3 does 2 things. It sets x to 3 and returns value of x 		
+						
+		CASTING PRIMITIVE VALUES		
+			-from larger data type to smaller or from decimal to integral	
+			int x = (int) 1.0; OK
+			short y= (short) 1921222 // Stored as 20678 because overflow
+			short a=10;
+			short b=12;
+			short c= (short) a+b;
+			
+		COMPOUNT OPERATORS	
+			long x=1;
+			int y=5;
+			y=y+x; //DOES NOT COMPILE
+			y= (int) y+x;// OK
+			y+=x;//AUTOMATICALLY CASTS TO INT 
+			
+	RELATIONAL OPERATORS
+		- <,<=,>,>=
+		- a instanceof b
+		-return boolean value
+	LOGICAL OPERATORS	
+		- &,|,^
+		-can be applied to numerical and boolean values
+		-if to boolean they are logical operators
+		-if to numbers they are bitwise operators (out of scope for OCA)
+		- a^b -> if exactly one is true and another false
+		
+		
+		
+	
