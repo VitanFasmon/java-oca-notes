@@ -8,6 +8,7 @@ import java.util.*; //redundant import
 public class Chapter1 {
 	int classVariable;
 	public Chapter1(){
+		System.out.println("_______________________________________");
 		System.out.println("Chapter1");
 		System.out.println("classVariable default value: "+classVariable);
 		new ImportExample();

@@ -75,12 +75,56 @@ JAVA OPERATORS
 		- <,<=,>,>=
 		- a instanceof b
 		-return boolean value
+		
 	LOGICAL OPERATORS	
-		- &,|,^
+		- &,|,^ (BOTH SIDES GET EVALUATED)
+		- &&,||(CONDITIONAL OPERATORS - SHORT CIRCUIT OPERATORS: FROM LEFT TO RIGHT. The right side may never be evaluated)
 		-can be applied to numerical and boolean values
 		-if to boolean they are logical operators
 		-if to numbers they are bitwise operators (out of scope for OCA)
-		- a^b -> if exactly one is true and another false
+		- a^b -> if exactly one is true and another false (EXCLUSIVE OR)
+		
+	EQUALITY OPERATORS
+		-used when comparing numbers, boolean or objects		
+		-  5==5.00 //TRUE because the left side is promoted to a double
+		-with objects it compares the references not the actual objects
+		-references are equal if they point to the same object or are both null
+		
+	UNDERSTANDING JAVA STATEMENTS:
+		-be careful of unreachable code with if else
+		int x=1
+		if(x){}//DOES NOT COMPILE, BECAOUSE X IS NOT BOOLEAN
+		-switch can not be boolean or long
+		-pay attention to missing break statements in switch
+		-switch values have to be compile time constants (literals,enums or final)
+		-switch supports a lot of data types
+		-while takes boolean as argument
+		-do while guarantees the statement will be executed at least once (statement executes before evaluation)
+		- for (initialization;booleanExpression;updateStatement){}
+		-for ( ; ; ) //will compile - infinite loop
+		- variables in the initialization block in for loop must all be of the same type
+		-for each is for collection objects
+		
+	UNDERSTANDING ADVANCE FLOW CONTROL
+		-optional labels 
+		-if does not allow break statements
+		-switch does not allow continue
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
 		
 		
 		
