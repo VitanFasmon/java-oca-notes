@@ -1,1 +1,208 @@
 Notes:
+Core Java API-s
+CREATING AND MANIULATING STRINGS
+	CONCATENATION
+		-combining strings
+		-System.out.println(1+"2"+"c"); //12c
+		-System.out.println(1+2+"c"); //3c
+	IMMUTABILITY
+		-Once a string object is created it cannot be changed
+		-a new object is created when you "change" a string
+	STRING POOL
+		-contains literal values (String s = "my string")
+		-String name = "fluffy"; //goes in the pool
+		-String name = new String("fluffy"); //does not go in the pool becouse it created the new string object
+	IMPORTANT STRING METHODS
+		.length() //number of chars in the string
+		.charAt(int index) 
+		.indexOf() //returns -1 if no result
+			-indexOf(char ch, index fromIndex)	 
+			-indexOf(String st, index fromIndex)	
+		.substring //returns part of the string		
+			.substring(int startIndex) 	//if no end index, it selects the remaining string
+			.substring(int startIndex, int endIndex) 	//end index is index where substring stops, not includes. So end index can be 1 larger than the last index.
+			s1.substring(3,4) returns string with length of 1
+			s1.substring(3,3) returns empty string
+		.toLowerCase()
+		.toUpperCase()
+		.equals(String str)
+		.equalsIgnoreCase(String str)	
+		.startsWith(String str) //case sensitive
+		.endsWith(String str) //case sensitive
+		.contains(String str)
+		.replace(char oldChar, char newChar)
+			.replace(CharSequence oldCharSequence, CharSequence newCharSequence)
+		.trim() //removes whitespace (spaces, \t, \n, \r) around the string but not within
+	METHOD CHAINING
+		-multiple methods on the same string
+			
+USING THE STRINGBUILDER CLASS		
+	-StringBulder is not immutable
+	-StringBuilder sb1=new StringBuilder("abc");
+	-StringBuilder sb2=sb1; //sb1 and sb2 point to the same object, so any changes on ether of them will affect the other	
+	CREATING A STRINGBUILDER
+		-StringBuilder sb1=new StringBuilder(); //empty
+		-StringBuilder sb1=new StringBuilder("abc"); //consists of string "abc"
+		-StringBuilder sb1=new StringBuilder(10); //reserves 10 slots for chars but is empty. Size=0, Capacity=10
+		-Size = number of characters currently in the sequence
+		-Capacity = number of characters the sequence can hold
+	IMPORTANT STRINGBUILDER METHODS
+		.charAt(int index);
+		.indexOf() //returns -1 if no result
+			-indexOf(char ch, index fromIndex)	 
+			-indexOf(String st, index fromIndex)
+		.length();
+		.substring //returns part of the string		
+			.substring(int startIndex) 	//if no end index, it selects the remaining string
+			.substring(int startIndex, int endIndex) 	//end index is index where substring stops, not includes. So end index can be 1 larger than the last index.
+			s1.substring(3,4) returns string with length of 1
+			s1.substring(3,3) returns empty string	
+		.append(String str);
+			- takes many data types as arguments not just string
+		.insert(int offset, String str); 
+			-adds characters to the StringBulder at the requested index
+			-like appends this takes lots of data types as argument not just string
+		.delete(int start, int end);
+		.deleteCharAt(int index);
+		.reverse(); //reverses the characters
+		.toString();
+	
+UNDERSTANDING EQUALITY
+	-with objects == checks references (it gets complicated with strings)
+	- String s1="hello world"
+	- String s2="hello world"
+	- String s3=new String("hello world")
+	- String s4="hello world".trim()
+	- s1==s2 //TRUE because string pool reuses the same strings so they are actually the same object (that is why strings are immutable, so that they cannot change)
+	- s1==s3 // FALSE because we create new object string
+	- s1.equals(s3)//TRUE
+	- s1==s4 // FALSE because s4 is computed at run time because of .trim() and is therefore not the same object. 
+	- never use == to compare strings in practice
+	-StringBuilder does not have .equals() implemented. If you call .equals() on StringBuilders it will compare the reference equality
+
+UNDERSTANDING JAVA ARRAYS
+	- int[] intArray=new int[3] //sets all values in the array to default values of the data type (in this case int = 0)
+	- int[] intArray2=new int[] {1,2,3,4,5}
+	- int[] intArray3={1,2,3,4,5} //anonymous array
+	- int[] array	//ok
+	- int [] array	//ok
+	- int array[]	//ok
+	- int array []	//ok
+	- .equals() does not compare values in arrays but the array reference (because array is an object and does not have .equals implemented like String)	 
+	- you can cast arrays to (from bigger to smaller type)
+		String[] strArray=new String[2];
+		Object[] objArray=strArray;
+		String[] newStrArray=(String[]) objArray;
+		newStrArray[0]=new StringBuilder(); //does not compile
+		objArray[0]=new StringBuilder(); //compiles but will throw an exception because inside Object[] there are still strings stored
+	- String[] strings =String[6]; 
+	- numbers.length()==6 //length is 6 even though all of the entries in array are null. I has 6 spaces reserved in memory
+	-SORTING
+		-java.util.Arrays.sort()
+		-sorting numbers works as expected
+		-sorting strings sorts them alphabetically (numbers go first, uppercase before lowercase)
+	-SEARCHING
+		-java provides easy way to search if array is SORTED
+		-java.util.Arrays.binarySearch(array, searchItem)
+		-RESULT:
+			-if java found element: index of match
+			-if element not found: negative number of would be index of match -1
+			-if array is unsorted: result is unpredictable
+	-VARARGS
+		-public static void main(String ... args)
+	-MULTIDIMENSIONAL ARRAYS
+		int[][] ok;
+		int ok [][];
+		int[] ok [];
+		int[] twoD[], threeD[][];
+		int[][][] threeDArray=[4][3][3];		
+		threeDArray={{{1},{2},{3}},{{4},{5},{6}},{{7},{8},{9}},{{10},{11},{12}};		
+		-Asymmetric multidimensional array			
+			int[][]args=new int[4][];
+			args[0]=new int[5];
+			args[1]={1,2,3,4};
+UNDERSTANDING ARRAYLIST
+	-java.util.ArrayList				
+	-ArrayList list1=new ArrayList();//default length
+	-ArrayList list2=new ArrayList(10); //ArrayList with length 10
+	-ArrayList list3=new ArrayList(list2); //copy of array list 2 but different object
+	-ArrayList <String> = new List<>();
+	.add()
+		-add(E element)
+		-add(int index, E element)
+	.remove()	
+		-remove(Object object) //removes the first matching value
+			-boolean return value tells us if match was removed
+		-remove(int index) //removes element at this index
+			-Element return type returns the object that was removed
+	.set()
+		-changes the element without changing size
+		- .set(int index, e newElement)
+	.isEmpty()
+		-looks if every slot is not used
+	.size()			
+		-look at how many slots are used
+	.clear()
+		-discards all elements in array
+	.contains(Object object)
+		-checks if certain value is in list
+	-equals(Object object)
+		-you can compare two lists to see if they have the same values
+	WRAPPER CLASSES
+		-each primitive type has a wrapper class (int -> Integer)
+		-int primitiveInt=Integer.parseInt("123");			
+		-Integer.parseInt() returns int
+		-Integer.valueOf() returns Integer
+	AUTOBOXING
+		-values automatically convert from primitive to relevant wrapper class		
+	CONVERTING BETWEEN ARRAY AND LIST
+		FROM LIST TO ARRAY
+			-List<String> list= new ArrayList<>()
+			-Object[] objectArray=list.toArray()	//list.toArray defaults to type object[] 		
+			-String[] strArray=list.toArray(new String[0]) //trick to force it to become String[]. We set size to 0 so that java will create a new array of the proper size
+		FROM ARRAY TO LIST
+			-List<String>newList= Array.asList(stringArray);		 		
+				-The problem is that lists are linked 
+				-When we change newList the changes will also be on the original array and vice versa
+				-This is not an ArrayList but a fixed sized backed version of a List.
+			-SOLUTION IS: List<String>newList= new ArrayList(Array.asList(stringArray)); //Creates NEW ArrayList
+	SORTING 
+		Collections.sort(numbers);				
+WORKING WITH DATES AND TIMES
+	-LocaDate
+	-LocalTime
+	-LocalDateTime
+	-Months start with 1 not with 0
+	-date and time classes have private constructors to force you to use static methods
+	-LocalDate d= new LocalDate(); //DOES NOT COMPILE because of private constructor
+	-if you pass invalid numbers like 32 for day an exception gets thrown
+	-date and time classes are immutable
+	-if we want to change the value we have to remember to assign the value: date=date.plusDays(2)
+	PERIOD	
+		-for larger periods of time (years, months, weeks, days)
+		-you cannot chain methods when creating a period	 becouse only the LAST method will be used. Period.ofXXXX methods are static.
+		-Period p2=Period.ofMonths(1).ofDays(20); // is the same as the following:
+			p2=Period.ofMonths(1);
+			p2=Period.ofDays(20);	
+	DURATION
+		-for smaller units of time
+		-you can specify day,hour,minutes,seconds or nanoseconds
+	FORMATTING DATES AND TIMES
+	-DateTimeFormatter
+	-dateTime.format(DateTimeFormatter.ISO_DATE_TIME);
+	-		
+	
+	
+	
+	
+	
+	
+	
+		
+					
+		
+		
+		
+		
+		
+			
