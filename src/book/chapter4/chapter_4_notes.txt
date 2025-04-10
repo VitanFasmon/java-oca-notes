@@ -1,1 +1,102 @@
 Notes:
+Methods and encapsulation
+	-method declaratiom
+		-public final void testMethod(int parameter) throws NotRealException{}
+	ACCESS MODIFIERS:
+		-private (same class)
+		-default (same package)
+		-protected (same package and subclass)
+		-public (any class)
+	OPTIONAL SPECIFIERS:
+		-you can have multiple optional specifiers on the same method (but not all combinations are legal)
+		-static
+		-abstract
+		-final
+		-synchronized
+		- and more...
+	METHOD NAME
+		-same rules as in chapter 1
+		-can only contain letters, numbers, $ or _	
+		-the first character can not be a number	
+		-reserved words are not allowed
+		
+WORKING WITH VARARGS
+	-variable argument
+	-vararg must be the LAST element in the method parameter list
+	-you can only therefore have one vararg parameter per method
+	-if no array is passed java creates array of length 0 for us	
+	
+STATIC METHODS AND FIELDS		
+	-they don't require an instance of the class
+	-purposes of static methods:
+		-helper methods (that don't require an object state)	
+		-for a state that is shared by all instances of the class (like a counter)
+	-a static member cannot call an instance member	(cant use instance variables inside static methods)
+	-if you have a static final ArrayList you can still add or remove items even though it is final. (You can call methods on final objects)	
+	-final values cannot be reassigned. If they are unassigned they are allowed to be assigned later for the first time.	
+	-STATIC IMPORTS
+		-import static 
+		-regular imports import classes
+		-static imports import static members of classes
+		-if we import a static method and then code a method with the same name in our class java will use our local method
+		-you cannot import two static members with the same name	
+PASSING DATA AMONG METHODS
+	-pass by value: 
+		-we pass a primitive variable to a method as a parameter and it creates a new variable with the same value
+		-the same thing happens when we pass object but the value of the variable is a reference that points to the same object. So if we call a method on this object with the same pointer it will change the same object as the original variable.	
+OVERLADING METHODS
+	-same method name but different: 
+		-parameters (different number, types, order)
+		-return types
+		-access modifiers
+		-specifiers (like static)
+		-exception lists. 		
+	-PARAMETERS MUST BE DIFFERENT! Otherwise java will not recognize it as different methods.
+	-careful when passing varargs or arrays. Java treats varargs as an array. void f(int[] array) = void f(int... array)
+	-java will try to use the most specific method it can (int->long->Integer->Varargs->Object)
+	-AUTOBOXING	
+		-if there is only this method: void fly(int a){}:
+			-if you pass fly(new Integer(1)); it will call fly(int a) and autobox Integer to int
+		-If there are both  fly(int a){} and fly(Integer a):
+			-java will use the most specific method (in this case fly(Integer a))
+	-java will only do 1 conversion	(it will not convert from int -> Integer-> Long but it would to int->long or int->Integer (so int -> Object)
+CONSTRUCTORS
+	-creates a new instance of the class
+	-java automatically creates default constructors if none are provided
+	-if you have a private constructor you cannot instantiate a class
+	-you can also assign final fields (for the first time) in the constructor (like in instance initializers)
+ORDER OF INITIALIZATION
+	-1. superclass (if exists)
+	-2. static variable declarations and initializers
+	-3. instance variables and initializers in order that they appear in the file
+	-4. constructor
+	-If a class is referred without the new call only rules 1 and 2 apply  (ClassName.staticMetod() only the rule 1 and 2 apply because class is not instantiated)	
+ENCAPSULATION DATA
+	-getters and setters
+	-creating immutable classes
+LAMBDAS
+	- a->a.canHop()
+	- (Animal a)-> {return a.canHop();}
+	-a semicolon is required when using a block
+	-a return statement is required when using a block
+	-lambdas work with interfaces that can have only one method - functional interfaces
+		import java.util.punction
+		public interface Predicate<T>{
+			boolean test(T t)
+		}
+		
+	
+	
+
+
+
+
+
+
+
+
+
+
+			
+		
+		
