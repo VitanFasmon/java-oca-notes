@@ -1,1 +1,148 @@
 Notes:
+Class design
+INHERITANCE
+	-one class can only extend one class
+	- one class can implement many interfaces
+	- you can prevent a class from being extended by marking it final
+	-there can be at most one public class or interface per file
+	-default class can be accessed by subclass or in the same package	
+CREATING JAVA OBJECTS
+	-all classes inherit from java.lang.Object
+	-CONSTRUCTORS
+		-in java the first statement of a constructor is ALLWAYS this() or super()
+		-this() for constructors in the same class, super() for parent constructors
+		-if not this() is present, compiler automatically inserts super() (java.lang.Object constructor if it does not seem to extend another class)
+		-if parent does not have no argument constructor you must implement the constructor with the same parameters in the child
+			Parent(int a){} 
+			Child(){}//does not compile
+			Child(int b){}// is ok
+			Child(){super(5)}//is ok
+		-Parent constructors are executed before the child one	
+	-You can use this. to access parent members that are inherited
+	-You can also access parent members with super. (super.age)
+	-If a child class overrides a member of a parent class you can access the child member with this and parent with super
+	-INHERITING METHODS
+		-Overriding methods:
+			-same signature and return type
+			-at least as accessible as the parent method
+			-the method may not throw a checked exception that is new or broader than the parent one
+			-if a method returns a value it must be the same or a subclass of the parent method return value (covariant return types)
+		-a child method may eliminate parent exception
+		-think what would work if you create this  object: Parent p=new Child(); and what to use p.ChildMethod();imdb
+		-Redeclaring private methods
+			-private methods cannot be overridden
+			-they can be declared again in the child class
+		-Hiding static methods		
+			-Hiding methods (only static) is similar to overriding methods
+			-Rules for hiding static methods (first 4 are the same as in overriding):
+				-both methods have the same signature
+				-child method at least as accessible as parent method
+				-child method may not throw an exception that is new or broader than the parent exception
+				-return value of the child method must be the same or a subclass of the return value of the parent method
+				-both methods are either static or not. One cannot be static if the other one is not and vice versa.
+		-Hiding vs overriding:	
+			-When a method is overridden the new method replaces the method both in the parent and in the child
+			-When a method is hidden the new method only hides the method in the child		
+		-Final methods cannot be overridden or hidden
+		-Inheriting variables
+			-Variables cannot be overridden. They are hidden.
+			-Access parent variable with super.parentVariable;
+			
+CREATING ABSTRACT CLASSES
+	-Rules:
+		-abstract class cannot be instantiated on its own		
+		-abstract class may include non abstract methods and variables		
+		-abstract methods may only be implemented in an abstract class
+		-abstract class cannot be final
+		-abstract method cannot be final		
+		-abstract method cannot be private		
+	-Concrete class
+		-concrete class is the first non-abstract subclass of an abstract class		
+		-concrete class is required to implement all abstract methods
+	-You can extend abstract classes with another abstract class		
+		-I the child of the abstract parent is also abstract it does not have to implement the abstract methods	
+		-The concrete class that extends an abstract class that is itself a child of another abstract class implements all abstract methods that have not been implemented before in abstract parents.	
+
+IMPLEMENTING INTERFACES			
+	-interfaces are assumed abstract	
+	-methods are assumed public abstract	
+	-variables are assumed public static final
+	-Rules:	
+		-interfaces cannot be instantiated directly
+		-interface is not required to have any methods
+		-interface may not be final	
+		-top level interfaces are assumed to be public or default and abstract (making interface as private,protected or final will trigger a compiler error)	
+		-all non-default methods in interfaces are assumed abstract and public (marking a method as private,protected or final will not compile)	
+	-Inheriting an interface
+		-interface that extends another interface inherits all of the abstract methods
+		-the first concrete class that inherits the interface must implement all abstract methods
+		-unlike an abstract class, interface can extends multiple interfaces		
+		-abstract class can implement an interface, but does not have to implement the abstract methods	
+		-Multiple inheritance: 
+			-if a class implements two interfaces and they both have the same abstract method
+			-if the methods are compatible (same type, signature) you can implement both interfaces simultaneously with one method implementation
+			-if methods have a different signature there is no conflict as the methods are overloaded	
+			-if the name and parameters of 2 methods are the same but the return type is different you cannot implement both interfaces as they will not compile
+	-Interface variables
+		-assumed public, static and final
+		-the value must be set at declaration since it is final		
+		-they are constants
+	-Default interface methods		
+		-default methods may only be implemented in interfaces
+		-they must be marked with the default keyword
+		-they must have a method body
+		-default methods are NOT assumed to be static, final or abstract
+		-they are assumed to be public
+		-when an interface inherits a default method from another interface it can:
+			-ignore it
+			-overwrite it
+			-redeclare it abstract
+	-Default methods and multiple inheritance
+		-if a class implements 2 interfaces with the same default methods (same signature) it will not compile
+		-if the subclass overrides those 2 methods it will compile
+		-this holds true also for abstract classes that inherit from multiple interfaces
+	-Static interface methods
+		-static interface methods are not inherited
+		-assumed to be public
+		-to reference a static method the name of the interface must me used: Animal.getName()
+		-static methods must have a body
+		-a class that implements 2 interfaces with the same static methods will still compile, because classes don't inherit static methods from interfaces
+POLYMORPHISM
+	-and object may be referenced using a reference with:
+		-the same type as object	
+		-the superclass of object
+		-interface the object implements (or an ancestor implements)
+	-a cast is not required if the object is reassigned to:
+		-a super type
+		-interface that it implements
+	-Casting objects
+		-from subclass to superclass does NOT require explicit cast
+		-from superclass to subclass it requires explicit cast	
+		-compiler will not allow casts to unrelated types
+		-even if the code compiles an exception might get thrown at runtime (if an object is not an instance of that class)
+	-Virtual Methods
+		-method in which the specific implementation is not determined until runtime
+		-all non-final, non-static, non-private	methods since any of them can be overridden at run time
+		-if you call a method on an object that overrides a method you get the overriden method, even if the reference is a parent
+	-Polymorphic parameters
+		-passing objects as parameters to methods
+		-if you define a superclass or interface as a type of parameter any child or class that implements that interface can be passed as a parameter
+			
+	-Polymorphism and method overriding
+		-polymorphism explains the rules for method overriding	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
+			
+			
+
+
+
