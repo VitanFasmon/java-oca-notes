@@ -1,1 +1,45 @@
 Notes:
+Exceptions
+	-java.lang.Object->java.lang.Throwable->error and exception
+	ERRORS
+		-something went so wrong that the program should not attempt to recover
+		-example: disk drive disappeared
+		-program cannot catch
+		-COMMON ERRORS:
+			-ExceptionInInitializerError (Thrown by JVM when a static initializer throws and exception and doesn't handle it)
+			-StackOverflowError (Thrown by JVM when a method calls itself too many times - infinite recursion)
+			-NoClassDefFoundError (Thrown by JVM when a class is available at compile time but not at runtime)
+	RUNTIME (UNCHECKED) EXCEPTIONS
+		-unexpected
+		-RuntimeException is a child of Exception
+		-if you had to declare runtime exceptions every single method would have one (because they can happen everywhere)
+		-ok for the program to catch but not required
+		-COMMON RUNTIME EXCEPTIONS:
+			-ArtihmeticException (divide by zero)
+			-ArrayIndexOutOfBoundsException (i>=array.length)
+			-ClassCastException (when casting between related objects)
+			-IllegalArgumentException (wrong method parameter type)
+			-NullPointerException (null.method())
+			-NumberFormatException (Integer.parseInt("123asd"))
+	CHECKED EXCEPTIONS
+		-All exceptions that are not RuntimeException (including the parent Exception)
+		-anticipated
+		-either handle (try catch) or throws
+		-COMMON CHECKED EXCEPTIONS:
+			-FileNotFoundException (when we reference a file that does not exist)
+			-IOException (problem reading or writing file)
+	Try - catch:
+		-{} are necessary (unlike if statements and loops)	
+		-try can not be alone. Either add catch or finally or both.
+		-finally is optional (runs regardless of whether an exception is thrown). Runs last.
+		-catch has to come before finally
+		-if System.exit(0) is called the program stops and finally is not called.
+		-catch blocks are read by compiler in order that they appear
+			-if a superclass of an exception can catch a subclass exception before a subclass catch block, that is unreachable code and will NOT COMPILE
+		-if the catch and finally both throw an exception the one in finally runs and the one in catch gets forgotten about. This is because finally runs after catch; 	
+	Subclasses
+		-when a class overrides a method from a superclass it's not allowed to add new checked exception or one that is broader than that of the parent class
+			-they can however throw RuntimeExceptions
+					
+
+			
